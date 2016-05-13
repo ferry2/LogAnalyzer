@@ -1,10 +1,12 @@
 package com.greenlightdigital.analyzer.interfaces;
 
+import com.greenlightdigital.analyzer.model.LogEntry;
+
 /**
  * @author vladislav.naydenov
  *
  */
 public interface LogAnalyzer {
 
-	String parseLine(String line);
+	LogEntry parseLine(String line);
 }
