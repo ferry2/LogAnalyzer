@@ -1,5 +1,7 @@
 package com.greenlightdigital.analyzer.impl;
 
+import java.util.Date;
+
 import com.greenlightdigital.analyzer.interfaces.LogAnalyzer;
 import com.greenlightdigital.analyzer.model.ELoginStatus;
 import com.greenlightdigital.analyzer.model.LogEntry;
@@ -18,21 +20,24 @@ public class LogAnalyzerImpl implements LogAnalyzer {
 		String[] lineChunks = line.split(",");
 		
 		String ipAddress = null;
-		String epochTime = null;
+		Date epochTime = null;
 		ELoginStatus loginStatus = null;
 		String userName = null;
 		
 		for (String chunk : lineChunks) {
 			if (LogEntryChecker.isValidIpAddress(chunk)) {
 				ipAddress = chunk;
+				continue;
 			}
 			
-			if (LogEntryChecker.isValidTimeInMillis(Long.parseLong(chunk))) {
-				epochTime = chunk;
+			if (LogEntryChecker.isValidTimeInMillis(chunk)) {
+				epochTime = new Date(Long.parseLong(chunk));
+				continue;
 			}
 			
 			if (LogEntryChecker.isValidUserName(chunk)) {
 				userName = chunk;
+				continue;
 			}
 			
 			ELoginStatus tempStatus = ELoginStatus.of(chunk);
@@ -43,5 +48,4 @@ public class LogAnalyzerImpl implements LogAnalyzer {
 		
 		return new LogEntry(ipAddress, epochTime, loginStatus, userName);
 	}
-
 }
