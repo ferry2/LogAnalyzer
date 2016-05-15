@@ -35,6 +35,13 @@ public class LogEntry {
 	public String getUserName() {
 		return userName;
 	}
+	
+	/**
+	 * Answers if this LogEntry is successful or not
+	 * */
+	public boolean isSuccessful() {
+		return loginStatus != null && !loginStatus.equals(ELoginStatus.FAILURE);
+	}
 
 	@Override
 	public int hashCode() {
