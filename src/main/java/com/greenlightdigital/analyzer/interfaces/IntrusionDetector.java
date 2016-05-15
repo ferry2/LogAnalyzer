@@ -1,6 +1,7 @@
 package com.greenlightdigital.analyzer.interfaces;
 
 import com.greenlightdigital.analyzer.model.LogEntry;
+import com.greenlightdigital.analyzer.model.RecentLogEntryContainer;
 
 /**
  * @author Vladislav Naydenov
@@ -9,4 +10,6 @@ import com.greenlightdigital.analyzer.model.LogEntry;
 public interface IntrusionDetector {
 
 	void addFailedLogin(LogEntry logEntry);
+	
+	RecentLogEntryContainer getLogEntryContainer();
 }

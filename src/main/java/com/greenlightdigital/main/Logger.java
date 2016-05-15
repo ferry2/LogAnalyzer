@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import com.greenlightdigital.analyzer.impl.IntrusionDetectorImpl;
+import com.greenlightdigital.analyzer.impl.IntrusionDetectorManualImpl;
 import com.greenlightdigital.analyzer.impl.LogAnalyzerImpl;
 import com.greenlightdigital.analyzer.interfaces.IntrusionDetector;
+import com.greenlightdigital.analyzer.interfaces.IntrusionDetectorManual;
 import com.greenlightdigital.analyzer.interfaces.LogAnalyzer;
 import com.greenlightdigital.analyzer.model.LogEntry;
 
@@ -21,6 +23,7 @@ public class Logger {
 
 	private static LogAnalyzer logAnalyzer = new LogAnalyzerImpl();
 	private static IntrusionDetector intrusionDetector = new IntrusionDetectorImpl();
+	private static IntrusionDetectorManual intrusionDetectorManual = new IntrusionDetectorManualImpl();
 	
 	public static void main(String[] args) {
 		BufferedReader reader = null;
@@ -41,6 +44,8 @@ public class Logger {
 					intrusionDetector.addFailedLogin(logEntry);
 				}
 			}
+			
+			intrusionDetectorManual.clean(intrusionDetector.getLogEntryContainer().getEntries());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

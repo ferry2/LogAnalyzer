@@ -19,4 +19,8 @@ public class IntrusionDetectorImpl implements IntrusionDetector {
 		
 		recentLogEntryContainer.addLogEntry(logEntry);
 	}
+	
+	public RecentLogEntryContainer getLogEntryContainer() {
+		return recentLogEntryContainer;
+	}
 }
